@@ -1,0 +1,29 @@
+.commentLayout {
+  box-sizing: border-box;
+  border-style: solid;
+  margin: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px 0;
+  padding: 10px;
+  display: grid;
+  gap: 15px;
+  grid-template-rows: auto 1fr;
+  grid-auto-rows: 0;
+  grid-template-areas:
+    'author date'
+    'body body';
+}
+
+.commentAuthor {
+  grid-area: author;
+  justify-self: start;
+}
+
+.commentTimestamp {
+  grid-area: date;
+  justify-self: end;
+}
+
+.commentBody {
+  grid-area: body;
+}

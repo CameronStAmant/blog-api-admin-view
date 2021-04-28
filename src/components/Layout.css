@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 50px 1fr 50px;
+  height: 100vh;
+  grid-auto-flow: column;
+  grid-template-areas:
+    'header header header'
+    'main main main'
+    'footer footer footer';
+}
