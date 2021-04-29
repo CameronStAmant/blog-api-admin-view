@@ -1,0 +1,23 @@
+.postEditForm {
+  grid-area: main;
+  display: grid;
+  grid-auto-flow: row;
+  justify-items: center;
+  gap: 50px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: '. form form .';
+}
+
+form {
+  grid-area: form;
+  justify-self: stretch;
+}
+
+form input {
+  width: 100%;
+}
+
+form textarea {
+  width: 100%;
+  height: 300px;
+}

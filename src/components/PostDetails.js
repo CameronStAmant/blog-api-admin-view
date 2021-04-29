@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import './PostDetails.css';
 import Layout from './Layout';
 import Comments from './Comments';
@@ -25,6 +25,12 @@ const PostDetails = () => {
       <div className="postLayout">
         <div className="post">
           <h2>{postDetails ? postDetails.title : ''}</h2>
+          <br />
+          <form
+            action={'http://localhost:3002' + useLocation().pathname + '/edit'}
+          >
+            <input type="submit" value="Edit" />
+          </form>
           <br />
           <p> {postDetails ? postDetails.body : ''}</p>
         </div>
