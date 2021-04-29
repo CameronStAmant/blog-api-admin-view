@@ -7,11 +7,12 @@
   padding: 10px;
   display: grid;
   gap: 15px;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-auto-rows: 0;
   grid-template-areas:
     'author date'
-    'body body';
+    'body body'
+    '. modify';
 }
 
 .commentAuthor {
@@ -26,4 +27,9 @@
 
 .commentBody {
   grid-area: body;
+}
+
+.modifyComment {
+  grid-area: modify;
+  justify-self: end;
 }
