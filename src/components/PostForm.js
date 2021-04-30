@@ -25,7 +25,6 @@ const PostForm = () => {
       const response = await fetch('http://localhost:3000/posts/' + id, {
         mode: 'cors',
       });
-      console.log('here');
       const data = await response.json();
       const item = data.post;
       setPostTitle(item.title);

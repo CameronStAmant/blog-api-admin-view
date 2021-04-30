@@ -1,0 +1,24 @@
+.commentForm {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas:
+    '. . title title . .'
+    'form form form form form form';
+}
+
+.commentForm h3 {
+  grid-area: title;
+}
+
+form {
+  grid-area: form;
+}
+
+form input {
+  width: 100%;
+}
+
+form textarea {
+  width: 100%;
+}
