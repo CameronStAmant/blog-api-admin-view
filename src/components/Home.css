@@ -20,7 +20,7 @@
   display: grid;
   gap: 15px;
   place-items: center;
-  grid-auto-rows: 400px;
+  grid-auto-rows: 200px;
 }
 
 .homeBanner {

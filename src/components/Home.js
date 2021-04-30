@@ -13,9 +13,11 @@ const Home = () => {
       const data = await response.json();
       const item = data.posts;
       const listPosts = item.map((post) => {
+        console.log(post);
         return (
           <li key={post.title} className="postDetails">
             <a href={post.url}>{post.title}</a>
+            <p>Published: {post.published.toString()}</p>
           </li>
         );
       });
