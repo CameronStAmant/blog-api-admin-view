@@ -19,7 +19,6 @@ const PostForm = () => {
           title: postTitle,
           body: postBody,
           author: '607a0bf4e185e7b95a3204ab',
-          published: true,
         }),
       };
       fetch('http://localhost:3000/posts/', requestOptions)
