@@ -7,35 +7,62 @@ const PostForm = () => {
   const [postTitle, setPostTitle] = useState(null);
   const [postBody, setPostBody] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [newUrl, setNewUrl] = useState(null);
   const { id } = useParams();
 
-  const handleSubmit = async () => {
-    const requestOptions = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: postTitle, body: postBody }),
-    };
-    fetch('http://localhost:3000/posts/' + id, requestOptions).then(
-      setRedirect(true)
-    );
+  const handleSubmit = (e) => {
+    if (id === undefined) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: postTitle,
+          body: postBody,
+          author: '607a0bf4e185e7b95a3204ab',
+          published: true,
+        }),
+      };
+      fetch('http://localhost:3000/posts/', requestOptions)
+        .then((response) => response.json())
+        .then((results) => {
+          return setNewUrl(results.url);
+        })
+        .catch((error) => {
+          console.log('The fetch error is: ' + error);
+        });
+    } else {
+      const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: postTitle, body: postBody }),
+      };
+      fetch('http://localhost:3000/posts/' + id, requestOptions).then(
+        setRedirect(true)
+      );
+    }
+    e.preventDefault();
   };
 
   useEffect(() => {
-    const fetchPostDetails = async () => {
-      const response = await fetch('http://localhost:3000/posts/' + id, {
-        mode: 'cors',
-      });
-      const data = await response.json();
-      const item = data.post;
-      setPostTitle(item.title);
-      setPostBody(item.body);
-    };
-    fetchPostDetails();
+    if (id === undefined) {
+    } else {
+      const fetchPostDetails = async () => {
+        const response = await fetch('http://localhost:3000/posts/' + id, {
+          mode: 'cors',
+        });
+        const data = await response.json();
+        const item = data.post;
+        setPostTitle(item.title);
+        setPostBody(item.body);
+      };
+      fetchPostDetails();
+    }
   }, [id]);
 
   return (
     <Layout>
-      {redirect === true && (
+      {newUrl !== null && <Redirect to={newUrl} />}
+      {redirect === true && newUrl === null && (
         <Redirect from="/posts/:id/edit" to={'/posts/' + id} />
       )}
       <div className="postEditForm">

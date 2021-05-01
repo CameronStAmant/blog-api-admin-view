@@ -26,9 +26,7 @@ const PostDetails = () => {
         <div className="post">
           <h2>{postDetails ? postDetails.title : ''}</h2>
           <br />
-          <form
-            action={'http://localhost:3002' + useLocation().pathname + '/edit'}
-          >
+          <form action={useLocation().pathname + '/edit'}>
             <input type="submit" value="Edit" />
           </form>
           <br />

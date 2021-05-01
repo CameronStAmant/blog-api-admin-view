@@ -15,7 +15,6 @@ const Home = () => {
         published: !post.published,
       }),
     };
-    console.log(post);
     fetch('http://localhost:3000/posts/' + post.id, requestOptions);
   };
 
@@ -47,7 +46,12 @@ const Home = () => {
   return (
     <Layout>
       <div className="mainContent">
-        <div className="homeBanner">Welcome to the tree blog!</div>
+        <div className="homeBanner">
+          <p>Welcome to the tree blog admin site!</p>
+          <form action="/posts/new">
+            <input type="submit" value="New Post" />
+          </form>
+        </div>
         <ul className="postIndex">{posts ? posts : ''}</ul>
       </div>
     </Layout>

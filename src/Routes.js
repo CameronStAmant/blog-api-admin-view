@@ -10,6 +10,7 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={App} />
+        <Route exact path="/posts/new" component={PostForm} />
         <Route exact path="/posts/:id" component={PostDetails} />
         <Route exact path="/posts/:id/edit" component={PostForm} />
         <Route

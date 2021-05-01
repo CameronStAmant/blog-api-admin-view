@@ -38,7 +38,7 @@ const Comments = (props) => {
               <div className="modifyComment">
                 <form
                   action={
-                    'http://localhost:3002/posts/' +
+                    '/posts/' +
                     props.postid +
                     '/comments/' +
                     comment._id +
