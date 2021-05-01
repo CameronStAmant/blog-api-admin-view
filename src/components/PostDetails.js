@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+
 import './PostDetails.css';
 import Layout from './Layout';
 import Comments from './Comments';
 
-const PostDetails = () => {
+const PostDetails = (props) => {
   const [postDetails, setPostDetails] = useState(null);
   const { id } = useParams();
+
+  const deletePost = (e) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        post: id,
+      }),
+    };
+    fetch('http://localhost:3000/posts/' + id, requestOptions).then(
+      props.history.push('/')
+    );
+  };
 
   useEffect(() => {
     const fetchPostDetails = async () => {
@@ -28,6 +43,9 @@ const PostDetails = () => {
           <br />
           <form action={useLocation().pathname + '/edit'}>
             <input type="submit" value="Edit" />
+          </form>
+          <form onSubmit={deletePost}>
+            <input type="submit" value="Delete" />
           </form>
           <br />
           <p> {postDetails ? postDetails.body : ''}</p>

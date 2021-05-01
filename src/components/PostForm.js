@@ -46,9 +46,12 @@ const PostForm = () => {
     if (id === undefined) {
     } else {
       const fetchPostDetails = async () => {
-        const response = await fetch('http://localhost:3000/posts/' + id, {
-          mode: 'cors',
-        });
+        const response = await fetch(
+          'http://localhost:3000/posts/' + id + '/edit',
+          {
+            mode: 'cors',
+          }
+        );
         const data = await response.json();
         const item = data.post;
         setPostTitle(item.title);

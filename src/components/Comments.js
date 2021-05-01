@@ -3,7 +3,6 @@ import './Comments.css';
 
 const Comments = (props) => {
   const [comments, setComments] = useState([]);
-  const [editComment, setEditComment] = useState(null);
 
   const handleDelete = (commentId) => {
     const requestOptions = {
@@ -27,35 +26,31 @@ const Comments = (props) => {
 
       for (const comment of data.comments) {
         let element;
-        if (editComment === comment._id) {
-          element = <p>TEST</p>;
-        } else {
-          element = (
-            <div className="commentLayout" id={comment._id} key={comment._id}>
-              <h4 className="commentAuthor">{comment.author.username}</h4>
-              <p className="commentTimestamp">{comment.timestamp}</p>
-              <p className="commentBody">{comment.body}</p>
-              <div className="modifyComment">
-                <form
-                  action={
-                    '/posts/' +
-                    props.postid +
-                    '/comments/' +
-                    comment._id +
-                    '/edit'
-                  }
-                >
-                  <input type="submit" value="Edit" />
-                </form>
-                <form onSubmit={() => handleDelete(comment._id)}>
-                  <input type="submit" value="Delete" />
-                </form>
-              </div>
-
-              <br />
+        element = (
+          <div className="commentLayout" id={comment._id} key={comment._id}>
+            <h4 className="commentAuthor">{comment.author.username}</h4>
+            <p className="commentTimestamp">{comment.timestamp}</p>
+            <p className="commentBody">{comment.body}</p>
+            <div className="modifyComment">
+              <form
+                action={
+                  '/posts/' +
+                  props.postid +
+                  '/comments/' +
+                  comment._id +
+                  '/edit'
+                }
+              >
+                <input type="submit" value="Edit" />
+              </form>
+              <form onSubmit={() => handleDelete(comment._id)}>
+                <input type="submit" value="Delete" />
+              </form>
             </div>
-          );
-        }
+
+            <br />
+          </div>
+        );
         setComments((comments) => [...comments, element]);
       }
     };
