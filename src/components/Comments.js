@@ -4,17 +4,21 @@ import './Comments.css';
 const Comments = (props) => {
   const [comments, setComments] = useState([]);
 
-  const handleDelete = (commentId) => {
-    const requestOptions = {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    };
-    fetch(
-      'http://localhost:3000/posts/' + props.postid + '/comments/' + commentId,
-      requestOptions
-    );
-  };
   useEffect(() => {
+    const handleDelete = (commentId) => {
+      const requestOptions = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      };
+      fetch(
+        'http://localhost:3000/posts/' +
+          props.postid +
+          '/comments/' +
+          commentId,
+        requestOptions
+      );
+    };
+
     const fetchComments = async () => {
       const response = await fetch(
         'http://localhost:3000/posts/' + props.postid + '/comments',
@@ -55,7 +59,7 @@ const Comments = (props) => {
       }
     };
     fetchComments();
-  }, []);
+  }, [props.postid]);
   return (
     <div>
       <div>{comments}</div>

@@ -38,7 +38,7 @@ const CommentForm = () => {
       setCommentBody(item.body);
     };
     fetchCommentDetails();
-  }, [id]);
+  }, [id, commentId]);
 
   return (
     <Layout>
