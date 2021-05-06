@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import App from './App';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -47,6 +47,19 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
+        {!auth && (
+          <div>
+            <Route exact path="/" render={() => <App authState={auth} />} />
+            <Route
+              exact
+              path="/login"
+              render={() => (
+                <Login authRefresh={(state) => setRefresh(state)} />
+              )}
+            />
+            <Redirect to={'/login'} />
+          </div>
+        )}
         <Route exact path="/" render={() => <App authState={auth} />} />
         <Route
           exact

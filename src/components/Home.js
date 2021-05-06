@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import './Home.css';
 import Layout from './Layout';
 
@@ -45,6 +46,7 @@ const Home = (props) => {
 
   return (
     <Layout authState={props.authState}>
+      {!props.authState && <Redirect to={'/login'} />}
       <div className="mainContent">
         <div className="homeBanner">
           {props.authState && <p>logged in!</p>}
