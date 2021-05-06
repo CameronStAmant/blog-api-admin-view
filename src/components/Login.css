@@ -1,0 +1,12 @@
+.mainContent {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: '. content .';
+  place-content: center;
+}
+
+.login-form {
+  grid-area: content;
+  justify-self: center;
+}

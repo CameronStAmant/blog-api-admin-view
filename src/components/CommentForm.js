@@ -3,7 +3,7 @@ import './CommentForm.css';
 import { useParams, Redirect } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
-const CommentForm = () => {
+const CommentForm = (props) => {
   const [commentBody, setCommentBody] = useState(null);
   const [redirect, setRedirect] = useState(false);
   const { id, commentId } = useParams();
@@ -41,7 +41,7 @@ const CommentForm = () => {
   }, [id, commentId]);
 
   return (
-    <Layout>
+    <Layout authState={props.authState}>
       {redirect === true && (
         <Redirect
           from="/posts/:id/comments/:commentId/edit"

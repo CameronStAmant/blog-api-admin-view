@@ -5,7 +5,7 @@ import './Layout.css';
 const Layout = (props) => {
   return (
     <div className="App">
-      <Header />
+      <Header authState={props.authState} />
       {props.children}
       <Footer />
     </div>

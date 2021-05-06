@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Layout from './Layout';
 
-const Home = () => {
+const Home = (props) => {
   const [posts, setPosts] = useState(null);
 
   const handleSubmit = (post) => {
@@ -44,9 +44,10 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout authState={props.authState}>
       <div className="mainContent">
         <div className="homeBanner">
+          {props.authState && <p>logged in!</p>}
           <p>Welcome to the tree blog admin site!</p>
           <form action="/posts/new">
             <input type="submit" value="New Post" />

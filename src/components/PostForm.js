@@ -3,7 +3,7 @@ import './PostForm.css';
 import { useParams, Redirect } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
-const PostForm = () => {
+const PostForm = (props) => {
   const [postTitle, setPostTitle] = useState(null);
   const [postBody, setPostBody] = useState(null);
   const [redirect, setRedirect] = useState(false);
@@ -14,11 +14,14 @@ const PostForm = () => {
     if (id === undefined) {
       const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('user'),
+        },
         body: JSON.stringify({
+          author: props.userId,
           title: postTitle,
           body: postBody,
-          author: '607a0bf4e185e7b95a3204ab',
         }),
       };
       fetch('http://localhost:3000/posts/', requestOptions)
@@ -32,7 +35,10 @@ const PostForm = () => {
     } else {
       const requestOptions = {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('user'),
+        },
         body: JSON.stringify({ title: postTitle, body: postBody }),
       };
       fetch('http://localhost:3000/posts/' + id, requestOptions).then(
@@ -50,6 +56,10 @@ const PostForm = () => {
           'http://localhost:3000/posts/' + id + '/edit',
           {
             mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('user'),
+            },
           }
         );
         const data = await response.json();
@@ -62,7 +72,7 @@ const PostForm = () => {
   }, [id]);
 
   return (
-    <Layout>
+    <Layout authState={props.authState}>
       {newUrl !== null && <Redirect to={newUrl} />}
       {redirect === true && newUrl === null && (
         <Redirect from="/posts/:id/edit" to={'/posts/' + id} />

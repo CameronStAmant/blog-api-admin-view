@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 
 import './PostDetails.css';
 import Layout from './Layout';
@@ -8,6 +8,7 @@ import Comments from './Comments';
 const PostDetails = (props) => {
   const [postDetails, setPostDetails] = useState(null);
   const { id } = useParams();
+  const history = useHistory();
 
   const deletePost = (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const PostDetails = (props) => {
       }),
     };
     fetch('http://localhost:3000/posts/' + id, requestOptions).then(
-      props.history.push('/')
+      history.push('/')
     );
   };
 
@@ -36,7 +37,7 @@ const PostDetails = (props) => {
   }, [id]);
 
   return (
-    <Layout>
+    <Layout authState={props.authState}>
       <div className="postLayout">
         <div className="post">
           <h2>{postDetails ? postDetails.title : ''}</h2>

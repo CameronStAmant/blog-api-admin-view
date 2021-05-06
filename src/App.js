@@ -1,10 +1,10 @@
 import './App.css';
 import Home from './components/Home';
 
-function App() {
+function App(props) {
   return (
     <div>
-      <Home />
+      <Home authState={props.authState} />
     </div>
   );
 }
