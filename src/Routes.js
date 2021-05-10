@@ -9,7 +9,6 @@ import CommentForm from './components/CommentForm';
 
 const Routes = () => {
   const [auth, setAuth] = useState(false);
-  const [username, setUsername] = useState(null);
   const [userId, setUserId] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
@@ -28,13 +27,11 @@ const Routes = () => {
         })
         .then((results) => {
           setAuth(results.response);
-          setUsername(results.username);
           setUserId(results.userId);
           setRefresh(false);
         });
     } else {
       setAuth(false);
-      setUsername(null);
       setUserId(null);
       setRefresh(false);
     }
@@ -46,9 +43,9 @@ const Routes = () => {
 
   return (
     <BrowserRouter>
-      <Switch>
-        {!auth && refresh && (
-          <div>
+      {!auth && refresh && (
+        <div>
+          <Switch>
             <Route exact path="/" render={() => <App authState={auth} />} />
             <Route
               exact
@@ -58,8 +55,10 @@ const Routes = () => {
               )}
             />
             <Redirect to={'/login'} />
-          </div>
-        )}
+          </Switch>
+        </div>
+      )}
+      <Switch>
         <Route exact path="/" render={() => <App authState={auth} />} />
         <Route
           exact
@@ -69,7 +68,12 @@ const Routes = () => {
         <Route
           exact
           path="/logout"
-          render={() => <Logout authRefresh={(state) => setRefresh(state)} />}
+          render={() => (
+            <Logout
+              authState={auth}
+              authRefresh={(state) => setRefresh(state)}
+            />
+          )}
         />
         <Route
           exact

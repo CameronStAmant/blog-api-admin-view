@@ -5,18 +5,25 @@ import Layout from './Layout';
 
 const Home = (props) => {
   const [posts, setPosts] = useState(null);
+  const [refresh, setRefresh] = useState(false);
 
   const handleSubmit = (post) => {
     const requestOptions = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('user'),
+      },
       body: JSON.stringify({
         title: post.title,
         body: post.body,
         published: !post.published,
       }),
     };
-    fetch('http://localhost:3000/posts/' + post.id, requestOptions);
+    fetch('http://localhost:3000/posts/' + post.id, requestOptions).then(() => {
+      setRefresh(true);
+    });
   };
 
   useEffect(() => {
@@ -42,7 +49,7 @@ const Home = (props) => {
       setPosts(listPosts);
     };
     fetchPosts();
-  }, []);
+  }, [refresh]);
 
   return (
     <Layout authState={props.authState}>

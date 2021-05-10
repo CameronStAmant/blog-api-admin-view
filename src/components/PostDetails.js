@@ -14,7 +14,10 @@ const PostDetails = (props) => {
     e.preventDefault();
     const requestOptions = {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('user'),
+      },
       body: JSON.stringify({
         post: id,
       }),
