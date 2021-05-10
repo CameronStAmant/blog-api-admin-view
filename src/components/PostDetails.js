@@ -23,7 +23,9 @@ const PostDetails = (props) => {
       }),
     };
     fetch('http://localhost:3000/posts/' + id, requestOptions).then(
-      history.push('/')
+      setTimeout(() => {
+        history.push('/');
+      }, 100)
     );
   };
 

@@ -43,10 +43,16 @@ const Routes = () => {
 
   return (
     <BrowserRouter>
-      {!auth && refresh && (
+      {!auth && !localStorage.getItem('user') && (
         <div>
           <Switch>
-            <Route exact path="/" render={() => <App authState={auth} />} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Login authRefresh={(state) => setRefresh(state)} />
+              )}
+            />
             <Route
               exact
               path="/login"
