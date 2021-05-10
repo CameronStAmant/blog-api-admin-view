@@ -7,6 +7,7 @@ const Login = (props) => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +29,8 @@ const Login = (props) => {
           setTimeout(() => {
             history.push('/');
           }, 100);
+        } else {
+          setErrorMessage(results.message);
         }
       });
   };
@@ -59,6 +62,7 @@ const Login = (props) => {
           />
           <br />
           <input type="submit" value="Login" />
+          {errorMessage && <div>{errorMessage}</div>}
         </form>
       </div>
     </Layout>
