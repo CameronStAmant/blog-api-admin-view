@@ -1,24 +1,31 @@
 import Layout from './Layout';
 import './CommentForm.css';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 const CommentForm = (props) => {
   const [commentBody, setCommentBody] = useState(null);
-  const [redirect, setRedirect] = useState(false);
   const { id, commentId } = useParams();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestOptions = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('user'),
+      },
       body: JSON.stringify({ body: commentBody }),
     };
     fetch(
       'http://localhost:3000/posts/' + id + '/comments/' + commentId,
       requestOptions
-    ).then(setRedirect(true));
+    ).then(
+      setTimeout(() => {
+        history.push('/posts/' + id);
+      }, 100)
+    );
   };
 
   useEffect(() => {
@@ -31,6 +38,9 @@ const CommentForm = (props) => {
           '/edit',
         {
           mode: 'cors',
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('user'),
+          },
         }
       );
       const data = await response.json();
@@ -42,12 +52,6 @@ const CommentForm = (props) => {
 
   return (
     <Layout authState={props.authState}>
-      {redirect === true && (
-        <Redirect
-          from="/posts/:id/comments/:commentId/edit"
-          to={'/posts/' + id}
-        />
-      )}
       <div className="commentEditForm">
         <form onSubmit={handleSubmit}>
           <label>Body: </label>
@@ -56,6 +60,7 @@ const CommentForm = (props) => {
             name="body"
             value={commentBody ? commentBody : ''}
             onChange={(e) => setCommentBody(e.target.value)}
+            required
           />
           <input type="submit" value="Submit" />
         </form>

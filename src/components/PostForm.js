@@ -86,6 +86,7 @@ const PostForm = (props) => {
             name="title"
             value={postTitle ? postTitle : ''}
             onChange={(e) => setPostTitle(e.target.value)}
+            required
           />
           <br />
           <label>Body: </label>
@@ -94,6 +95,7 @@ const PostForm = (props) => {
             name="body"
             value={postBody ? postBody : ''}
             onChange={(e) => setPostBody(e.target.value)}
+            required
           />
           <input type="submit" value="Submit" />
         </form>

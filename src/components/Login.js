@@ -48,6 +48,7 @@ const Login = (props) => {
             autoComplete="on"
             value={username ? username : ''}
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
           <br />
           <label htmlFor="password-field">Password:</label>
@@ -59,6 +60,7 @@ const Login = (props) => {
             autoComplete="on"
             value={password ? password : ''}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <br />
           <input type="submit" value="Login" />

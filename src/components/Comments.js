@@ -8,7 +8,10 @@ const Comments = (props) => {
     const handleDelete = (commentId) => {
       const requestOptions = {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('user'),
+        },
       };
       fetch(
         'http://localhost:3000/posts/' +
