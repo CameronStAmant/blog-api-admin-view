@@ -42,7 +42,7 @@ const Routes = () => {
   }, [refresh]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter forceRefresh>
       {!auth && !localStorage.getItem('user') && (
         <div>
           <Switch>
