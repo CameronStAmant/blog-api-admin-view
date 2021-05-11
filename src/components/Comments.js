@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Comments.css';
+const { DateTime } = require('luxon');
 
 const Comments = (props) => {
   const [comments, setComments] = useState([]);
@@ -36,7 +37,11 @@ const Comments = (props) => {
         element = (
           <div className="commentLayout" id={comment._id} key={comment._id}>
             <h4 className="commentAuthor">{comment.author.username}</h4>
-            <p className="commentTimestamp">{comment.timestamp}</p>
+            <p className="commentTimestamp">
+              {DateTime.fromISO(comment.timestamp).toLocaleString(
+                DateTime.DATETIME_MED
+              )}
+            </p>
             <p className="commentBody">{comment.body}</p>
             <div className="modifyComment">
               <form
