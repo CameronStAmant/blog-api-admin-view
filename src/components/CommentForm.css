@@ -1,13 +1,17 @@
-.commentForm {
+.commentEditForm {
   grid-area: main;
   display: grid;
+  justify-self: stretch;
+  gap: 15px;
+  margin: 15px;
+  padding: 10px;
   grid-template-columns: repeat(6, 1fr);
   grid-template-areas:
     '. . title title . .'
     'form form form form form form';
 }
 
-.commentForm h3 {
+.commentEditForm h3 {
   grid-area: title;
 }
 

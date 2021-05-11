@@ -52,10 +52,9 @@ const Home = (props) => {
 
   return (
     <Layout authState={props.authState}>
-      <div className="mainContent">
+      <div className="mainContentHome">
         <div className="homeBanner">
-          {props.authState && <p>logged in!</p>}
-          <p>Welcome to the tree blog admin site!</p>
+          <p>Welcome to the blog admin site!</p>
           <form action="/posts/new">
             <input type="submit" value="New Post" />
           </form>

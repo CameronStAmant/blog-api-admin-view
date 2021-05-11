@@ -8,5 +8,8 @@
 
 .login-form {
   grid-area: content;
-  justify-self: center;
+  justify-self: stretch;
+  gap: 15px;
+  margin: 15px;
+  padding: 10px;
 }
