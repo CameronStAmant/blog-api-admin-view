@@ -14,5 +14,6 @@
   text-align: center;
 }
 
-.post > p {
+.post form {
+  width: 100vw;
 }
