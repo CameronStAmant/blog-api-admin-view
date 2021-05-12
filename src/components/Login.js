@@ -26,9 +26,7 @@ const Login = (props) => {
         if (results.token !== undefined) {
           window.localStorage.setItem('user', results.token);
           props.authRefresh(true);
-          setTimeout(() => {
-            history.push('/');
-          }, 100);
+          history.push('/');
         } else {
           setErrorMessage(results.message);
         }

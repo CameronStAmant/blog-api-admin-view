@@ -24,11 +24,9 @@ const CommentForm = (props) => {
         '/comments/' +
         commentId,
       requestOptions
-    ).then(
-      setTimeout(() => {
-        history.push('/posts/' + id);
-      }, 100)
-    );
+    ).then(() => {
+      history.push('/posts/' + id);
+    });
   };
 
   useEffect(() => {

@@ -14,6 +14,7 @@ const PostDetails = (props) => {
     e.preventDefault();
     const requestOptions = {
       method: 'DELETE',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('user'),
@@ -25,11 +26,9 @@ const PostDetails = (props) => {
     fetch(
       'https://serene-waters-04286.herokuapp.com/posts/' + id,
       requestOptions
-    ).then(
-      setTimeout(() => {
-        history.push('/');
-      }, 100)
-    );
+    ).then(() => {
+      history.push('/');
+    });
   };
 
   useEffect(() => {
