@@ -6,7 +6,8 @@ const Home = (props) => {
   const [posts, setPosts] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
-  const handleSubmit = (post) => {
+  const handleSubmit = (e, post) => {
+    e.preventDefault();
     const requestOptions = {
       method: 'PUT',
       mode: 'cors',
@@ -20,16 +21,22 @@ const Home = (props) => {
         published: !post.published,
       }),
     };
-    fetch('http://localhost:3000/posts/' + post.id, requestOptions).then(() => {
-      setRefresh(true);
+    fetch(
+      'https://serene-waters-04286.herokuapp.com/posts/' + post.id,
+      requestOptions
+    ).then((results) => {
+      setRefresh(!refresh);
     });
   };
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('http://localhost:3000/posts', {
-        mode: 'cors',
-      });
+      const response = await fetch(
+        'https://serene-waters-04286.herokuapp.com/posts',
+        {
+          mode: 'cors',
+        }
+      );
       const data = await response.json();
       const item = data.posts;
       const listPosts = item.map((post) => {
@@ -38,7 +45,7 @@ const Home = (props) => {
             <a href={post.url}>{post.title}</a>
             <div>
               <p>Published: {post.published.toString()}</p>
-              <form onSubmit={() => handleSubmit(post)}>
+              <form onSubmit={(e) => handleSubmit(e, post)}>
                 <input type="submit" value="Toggle" />
               </form>
             </div>

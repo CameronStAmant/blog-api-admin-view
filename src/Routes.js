@@ -21,7 +21,7 @@ const Routes = () => {
       },
     };
     if (localStorage.getItem('user')) {
-      fetch('http://localhost:3000/auth', requestOptions)
+      fetch('https://serene-waters-04286.herokuapp.com/auth', requestOptions)
         .then((response) => {
           return response.json();
         })

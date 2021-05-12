@@ -19,7 +19,10 @@ const CommentForm = (props) => {
       body: JSON.stringify({ body: commentBody }),
     };
     fetch(
-      'http://localhost:3000/posts/' + id + '/comments/' + commentId,
+      'https://serene-waters-04286.herokuapp.com/posts/' +
+        id +
+        '/comments/' +
+        commentId,
       requestOptions
     ).then(
       setTimeout(() => {
@@ -31,7 +34,7 @@ const CommentForm = (props) => {
   useEffect(() => {
     const fetchCommentDetails = async () => {
       const response = await fetch(
-        'http://localhost:3000/posts/' +
+        'https://serene-waters-04286.herokuapp.com/posts/' +
           id +
           '/comments/' +
           commentId +

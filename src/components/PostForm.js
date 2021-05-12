@@ -11,6 +11,7 @@ const PostForm = (props) => {
   const { id } = useParams();
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     if (id === undefined) {
       const requestOptions = {
         method: 'POST',
@@ -24,7 +25,7 @@ const PostForm = (props) => {
           body: postBody,
         }),
       };
-      fetch('http://localhost:3000/posts/', requestOptions)
+      fetch('https://serene-waters-04286.herokuapp.com/posts/', requestOptions)
         .then((response) => response.json())
         .then((results) => {
           return setNewUrl(results.url);
@@ -41,11 +42,11 @@ const PostForm = (props) => {
         },
         body: JSON.stringify({ title: postTitle, body: postBody }),
       };
-      fetch('http://localhost:3000/posts/' + id, requestOptions).then(
-        setRedirect(true)
-      );
+      fetch(
+        'https://serene-waters-04286.herokuapp.com/posts/' + id,
+        requestOptions
+      ).then(() => setRedirect(true));
     }
-    e.preventDefault();
   };
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const PostForm = (props) => {
     } else {
       const fetchPostDetails = async () => {
         const response = await fetch(
-          'http://localhost:3000/posts/' + id + '/edit',
+          'https://serene-waters-04286.herokuapp.com/posts/' + id + '/edit',
           {
             mode: 'cors',
             headers: {

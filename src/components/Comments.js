@@ -15,7 +15,7 @@ const Comments = (props) => {
         },
       };
       fetch(
-        'http://localhost:3000/posts/' +
+        'https://serene-waters-04286.herokuapp.com/posts/' +
           props.postid +
           '/comments/' +
           commentId,
@@ -25,7 +25,9 @@ const Comments = (props) => {
 
     const fetchComments = async () => {
       const response = await fetch(
-        'http://localhost:3000/posts/' + props.postid + '/comments',
+        'https://serene-waters-04286.herokuapp.com/posts/' +
+          props.postid +
+          '/comments',
         {
           mode: 'cors',
         }

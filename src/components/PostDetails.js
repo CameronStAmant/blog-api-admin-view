@@ -22,7 +22,10 @@ const PostDetails = (props) => {
         post: id,
       }),
     };
-    fetch('http://localhost:3000/posts/' + id, requestOptions).then(
+    fetch(
+      'https://serene-waters-04286.herokuapp.com/posts/' + id,
+      requestOptions
+    ).then(
       setTimeout(() => {
         history.push('/');
       }, 100)
@@ -31,9 +34,12 @@ const PostDetails = (props) => {
 
   useEffect(() => {
     const fetchPostDetails = async () => {
-      const response = await fetch('http://localhost:3000/posts/' + id, {
-        mode: 'cors',
-      });
+      const response = await fetch(
+        'https://serene-waters-04286.herokuapp.com/posts/' + id,
+        {
+          mode: 'cors',
+        }
+      );
       const data = await response.json();
       const item = data.post;
       setPostDetails(item);

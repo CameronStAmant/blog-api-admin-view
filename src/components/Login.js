@@ -20,7 +20,7 @@ const Login = (props) => {
         adminSite: true,
       }),
     };
-    fetch('http://localhost:3000/login', requestOptions)
+    fetch('https://serene-waters-04286.herokuapp.com/login', requestOptions)
       .then((response) => response.json())
       .then((results) => {
         if (results.token !== undefined) {
