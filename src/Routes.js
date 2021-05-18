@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import App from './App';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -42,7 +42,7 @@ const Routes = () => {
   }, [refresh]);
 
   return (
-    <BrowserRouter forceRefresh>
+    <HashRouter forceRefresh>
       {!auth && !localStorage.getItem('user') && (
         <div>
           <Switch>
@@ -102,7 +102,7 @@ const Routes = () => {
           render={() => <CommentForm authState={auth} />}
         />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

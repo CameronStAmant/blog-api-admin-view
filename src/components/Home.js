@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import './Home.css';
 import Layout from './Layout';
 
 const Home = (props) => {
   const [posts, setPosts] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = (e, post) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ const Home = (props) => {
       const listPosts = item.map((post) => {
         return (
           <li key={post.title} className="postDetails">
-            <a href={post.url}>{post.title}</a>
+            <Link to={'/posts/' + post.id}>{post.title}</Link>
             <div>
               <p>Published: {post.published.toString()}</p>
               <form onSubmit={(e) => handleSubmit(e, post)}>
@@ -62,9 +64,9 @@ const Home = (props) => {
       <div className="mainContentHome">
         <div className="homeBanner">
           <p>Welcome to the blog admin site!</p>
-          <form action="/posts/new">
-            <input type="submit" value="New Post" />
-          </form>
+          <Link to="/posts/new">
+            <button type="button">New Post</button>
+          </Link>
         </div>
         <ul className="postIndex">{posts ? posts : ''}</ul>
       </div>

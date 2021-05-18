@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
 
 import './PostDetails.css';
 import Layout from './Layout';
@@ -52,9 +52,9 @@ const PostDetails = (props) => {
         <div className="post">
           <h2>{postDetails ? postDetails.title : ''}</h2>
           <br />
-          <form action={useLocation().pathname + '/edit'}>
-            <input type="submit" value="Edit" />
-          </form>
+          <Link to={useLocation().pathname + '/edit'}>
+            <button type="button">Edit</button>
+          </Link>
           <form onSubmit={deletePost}>
             <input type="submit" value="Delete" />
           </form>

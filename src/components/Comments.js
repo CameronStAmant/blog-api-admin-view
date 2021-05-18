@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Comments.css';
 const { DateTime } = require('luxon');
 
@@ -50,13 +51,13 @@ const Comments = (props) => {
           </p>
           <p className="commentBody">{comment.body}</p>
           <div className="modifyComment">
-            <form
-              action={
+            <Link
+              to={
                 '/posts/' + props.postid + '/comments/' + comment._id + '/edit'
               }
             >
-              <input type="submit" value="Edit" />
-            </form>
+              <button type="button">Edit</button>
+            </Link>
             <form onSubmit={(e) => handleDelete(e, comment._id)}>
               <input type="submit" value="Delete" />
             </form>
