@@ -58,9 +58,10 @@ const Comments = (props) => {
             >
               <button type="button">Edit</button>
             </Link>
-            <form onSubmit={(e) => handleDelete(e, comment._id)}>
-              <input type="submit" value="Delete" />
-            </form>
+
+            <button type="button" onClick={(e) => handleDelete(e, comment._id)}>
+              Delete
+            </button>
           </div>
 
           <br />

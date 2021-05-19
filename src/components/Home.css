@@ -34,3 +34,11 @@
   padding: 25px;
   grid-area: title;
 }
+
+#togglePublish {
+  width: 4em;
+}
+
+button {
+  width: 5em;
+}

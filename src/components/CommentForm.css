@@ -15,14 +15,18 @@
   grid-area: title;
 }
 
-form {
+.commentEditForm form {
   grid-area: form;
 }
 
-form input {
+.commentEditForm form input {
   width: 100%;
 }
 
-form textarea {
+.commentEditForm form textarea {
   width: 100%;
+}
+
+#commentSubmit {
+  width: 4em;
 }

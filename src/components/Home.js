@@ -48,7 +48,7 @@ const Home = (props) => {
             <div>
               <p>Published: {post.published.toString()}</p>
               <form onSubmit={(e) => handleSubmit(e, post)}>
-                <input type="submit" value="Toggle" />
+                <input type="submit" id="togglePublish" value="Toggle" />
               </form>
             </div>
           </li>

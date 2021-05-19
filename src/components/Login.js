@@ -61,7 +61,7 @@ const Login = (props) => {
             required
           />
           <br />
-          <input type="submit" value="Login" />
+          <input type="submit" id="loginButton" value="Login" />
           {errorMessage && <div>{errorMessage}</div>}
         </form>
       </div>

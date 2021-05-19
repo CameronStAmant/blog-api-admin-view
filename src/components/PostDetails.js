@@ -55,9 +55,9 @@ const PostDetails = (props) => {
           <Link to={useLocation().pathname + '/edit'}>
             <button type="button">Edit</button>
           </Link>
-          <form onSubmit={deletePost}>
-            <input type="submit" value="Delete" />
-          </form>
+          <button type="button" onClick={deletePost}>
+            Delete
+          </button>
           <br />
           <p> {postDetails ? postDetails.body : ''}</p>
         </div>

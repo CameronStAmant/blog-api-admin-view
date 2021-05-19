@@ -98,7 +98,7 @@ const PostForm = (props) => {
             onChange={(e) => setPostBody(e.target.value)}
             required
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" id="submitPostForm" value="Submit" />
         </form>
       </div>
     </Layout>

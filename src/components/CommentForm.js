@@ -63,7 +63,7 @@ const CommentForm = (props) => {
             onChange={(e) => setCommentBody(e.target.value)}
             required
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" id="commentSubmit" value="Submit" />
         </form>
       </div>
     </Layout>

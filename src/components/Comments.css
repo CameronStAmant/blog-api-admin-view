@@ -38,3 +38,7 @@
 .Comment {
   justify-self: stretch;
 }
+
+.commentLayout button {
+  width: 4em;
+}
