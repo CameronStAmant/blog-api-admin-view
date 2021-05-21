@@ -8,7 +8,7 @@ The admin frontend side of a blog.
 
 ## Features
 
-- Uses React
+- Uses React.
 - Communicates with the server via REST API.
 - Allows admins to create, edit, and delete posts, as well as edit and delete comments. They can also publish and unpublish posts, to display and hide them from the clients frontend.
 
