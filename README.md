@@ -1,25 +1,37 @@
-This project is the admin frontend side of a blog. It was built with React and communicates with the node server via REST API. While similar to the client frontend side, this side allows admins to create, edit, and delete posts, as well as edit and delete comments. The user can publish and unpublish posts, which display and hide them on the clients side. Demos, credentials, and repos for both frontends and the backend can be found below:
+# blog-api-admin-view
 
-Client frontend:
+The admin frontend side of a blog.
+
+<p align="center">
+    <img src="./blog-api-admin-view.png" alt="Admin frontend website" />
+</p>
+
+## Features
+
+- Uses React
+- Communicates with the server via REST API.
+- Allows admins to create, edit, and delete posts, as well as edit and delete comments. They can also publish and unpublish posts, to display and hide them from the clients frontend.
+
+## Client frontend:
 
 - Demo: https://cameronstamant.github.io/blog-api-client/#/
 - Repo: https://github.com/CameronStAmant/blog-api-client
 
-Admin frontend:
+## Admin frontend:
 
 - Demo: https://cameronstamant.github.io/blog-api-admin-view/#/
 - Repo: https://github.com/CameronStAmant/blog-api-admin-view
 
-Server:
+## Server:
 
 - Repo: https://github.com/CameronStAmant/blog-api-server
 
-Normal user:
+## Normal user:
 
 - Username: user1
 - Password: user1
 
-Admin:
+## Admin:
 
 - Username: admin
 - Password: admin
