@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
-import './Home.css';
 import Layout from './Layout';
 
 const Home = (props) => {
@@ -43,12 +42,24 @@ const Home = (props) => {
       const item = data.posts;
       const listPosts = item.map((post) => {
         return (
-          <li key={post.title} className="postDetails">
-            <Link to={'/posts/' + post.id}>{post.title}</Link>
-            <div>
+          <li
+            key={post.title}
+            className="display: grid box-border border-2 shadow-sm rounded-md gap-4 border-green-200 mx-2 auto-rows-min"
+          >
+            <Link to={'/posts/' + post.id}>
+              <p className="m-14 text-center text-xl font-semibold">
+                {post.title}
+              </p>
+            </Link>
+            <div className="display: grid mb-8">
               <p>Published: {post.published.toString()}</p>
               <form onSubmit={(e) => handleSubmit(e, post)}>
-                <input type="submit" id="togglePublish" value="Toggle" />
+                <input
+                  className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-2/6 active:bg-green-400 active:border-green-400 shadow-sm"
+                  type="submit"
+                  id="togglePublish"
+                  value="Toggle"
+                />
               </form>
             </div>
           </li>
@@ -61,14 +72,21 @@ const Home = (props) => {
 
   return (
     <Layout authState={props.authState}>
-      <div className="mainContentHome">
-        <div className="homeBanner">
-          <p>Welcome to the blog admin site!</p>
+      <div className="display: grid grid-rows-home auto-rows-min row-start-2 col-span-full">
+        <div className="row-start-1 place-self-center min-h-px col-span-full text-2xl font-semibold text-center">
+          <h2>Welcome to the blog admin site!</h2>
           <Link to="/posts/new">
-            <button type="button">New Post</button>
+            <button
+              type="button"
+              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-2/6 active:bg-green-400 active:border-green-400 shadow-sm"
+            >
+              New Post
+            </button>
           </Link>
         </div>
-        <ul className="postIndex">{posts ? posts : ''}</ul>
+        <ul className="display: grid grid-flow-row md:grid-cols-2 row-start-2 lg:grid-cols-3 col-span-full gap-y-4 h-full text-center auto-rows-min">
+          {posts ? posts : ''}
+        </ul>
       </div>
     </Layout>
   );
