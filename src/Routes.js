@@ -64,44 +64,46 @@ const Routes = () => {
           </Switch>
         </div>
       )}
-      <Switch>
-        <Route exact path="/" render={() => <App authState={auth} />} />
-        <Route
-          exact
-          path="/login"
-          render={() => <Login authRefresh={(state) => setRefresh(state)} />}
-        />
-        <Route
-          exact
-          path="/logout"
-          render={() => (
-            <Logout
-              authState={auth}
-              authRefresh={(state) => setRefresh(state)}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/posts/new"
-          render={() => <PostForm authState={auth} userId={userId} />}
-        />
-        <Route
-          exact
-          path="/posts/:id"
-          render={() => <PostDetails authState={auth} />}
-        />
-        <Route
-          exact
-          path="/posts/:id/edit"
-          render={() => <PostForm authState={auth} />}
-        />
-        <Route
-          exact
-          path="/posts/:id/comments/:commentId/edit"
-          render={() => <CommentForm authState={auth} />}
-        />
-      </Switch>
+      {auth && localStorage.getItem('user') && (
+        <Switch>
+          <Route exact path="/" render={() => <App authState={auth} />} />
+          <Route
+            exact
+            path="/login"
+            render={() => <Login authRefresh={(state) => setRefresh(state)} />}
+          />
+          <Route
+            exact
+            path="/logout"
+            render={() => (
+              <Logout
+                authState={auth}
+                authRefresh={(state) => setRefresh(state)}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/posts/new"
+            render={() => <PostForm authState={auth} userId={userId} />}
+          />
+          <Route
+            exact
+            path="/posts/:id"
+            render={() => <PostDetails authState={auth} />}
+          />
+          <Route
+            exact
+            path="/posts/:id/edit"
+            render={() => <PostForm authState={auth} />}
+          />
+          <Route
+            exact
+            path="/posts/:id/comments/:commentId/edit"
+            render={() => <CommentForm authState={auth} />}
+          />
+        </Switch>
+      )}
     </HashRouter>
   );
 };
