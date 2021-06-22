@@ -1,14 +1,10 @@
-import './Footer.css';
-
 const Footer = () => {
   return (
-    <div className="footer">
-      <ul className="footerNav">
-        <li>Privacy</li>
-        <li>About</li>
-        <li>Contact us</li>
-      </ul>
-    </div>
+    <ul className="display: grid grid-cols-3 text-center py-2 row-start-3 col-span-full">
+      <li>Privacy</li>
+      <li>About</li>
+      <li>Contact us</li>
+    </ul>
   );
 };
 
