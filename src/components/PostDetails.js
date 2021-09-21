@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import baseUrl from '../const';
 
 // import './PostDetails.css';
 import Layout from './Layout';
@@ -23,22 +24,16 @@ const PostDetails = (props) => {
         post: id,
       }),
     };
-    fetch(
-      'https://serene-waters-04286.herokuapp.com/posts/' + id,
-      requestOptions
-    ).then(() => {
+    fetch(baseUrl + '/posts/' + id, requestOptions).then(() => {
       history.push('/');
     });
   };
 
   useEffect(() => {
     const fetchPostDetails = async () => {
-      const response = await fetch(
-        'https://serene-waters-04286.herokuapp.com/posts/' + id,
-        {
-          mode: 'cors',
-        }
-      );
+      const response = await fetch(baseUrl + '/posts/' + id, {
+        mode: 'cors',
+      });
       const data = await response.json();
       const item = data.post;
       setPostDetails(item);

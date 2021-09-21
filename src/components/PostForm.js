@@ -1,6 +1,7 @@
 import Layout from './Layout';
 import { useParams, Redirect } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import baseUrl from '../const';
 
 const PostForm = (props) => {
   const [postTitle, setPostTitle] = useState(null);
@@ -24,7 +25,7 @@ const PostForm = (props) => {
           body: postBody,
         }),
       };
-      fetch('https://serene-waters-04286.herokuapp.com/posts/', requestOptions)
+      fetch(baseUrl + '/posts/', requestOptions)
         .then((response) => response.json())
         .then((results) => {
           return setNewUrl(results.url);
@@ -41,10 +42,9 @@ const PostForm = (props) => {
         },
         body: JSON.stringify({ title: postTitle, body: postBody }),
       };
-      fetch(
-        'https://serene-waters-04286.herokuapp.com/posts/' + id,
-        requestOptions
-      ).then(() => setRedirect(true));
+      fetch(baseUrl + '/posts/' + id, requestOptions).then(() =>
+        setRedirect(true)
+      );
     }
   };
 
@@ -52,16 +52,13 @@ const PostForm = (props) => {
     if (id === undefined) {
     } else {
       const fetchPostDetails = async () => {
-        const response = await fetch(
-          'https://serene-waters-04286.herokuapp.com/posts/' + id + '/edit',
-          {
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('user'),
-            },
-          }
-        );
+        const response = await fetch(baseUrl + '/posts/' + id + '/edit', {
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('user'),
+          },
+        });
         const data = await response.json();
         const item = data.post;
         setPostTitle(item.title);

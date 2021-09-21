@@ -6,6 +6,7 @@ import Logout from './components/Logout';
 import PostDetails from './components/PostDetails';
 import PostForm from './components/PostForm';
 import CommentForm from './components/CommentForm';
+import baseUrl from './const';
 
 const Routes = () => {
   const [auth, setAuth] = useState(false);
@@ -21,7 +22,7 @@ const Routes = () => {
       },
     };
     if (localStorage.getItem('user')) {
-      fetch('https://serene-waters-04286.herokuapp.com/auth', requestOptions)
+      fetch(baseUrl + '/auth', requestOptions)
         .then((response) => {
           return response.json();
         })

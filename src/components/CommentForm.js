@@ -1,6 +1,7 @@
 import Layout from './Layout';
 import { useParams, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import baseUrl from '../const';
 
 const CommentForm = (props) => {
   const [commentBody, setCommentBody] = useState(null);
@@ -18,10 +19,7 @@ const CommentForm = (props) => {
       body: JSON.stringify({ body: commentBody }),
     };
     fetch(
-      'https://serene-waters-04286.herokuapp.com/posts/' +
-        id +
-        '/comments/' +
-        commentId,
+      baseUrl + '/posts/' + id + '/comments/' + commentId,
       requestOptions
     ).then(() => {
       history.push('/posts/' + id);
@@ -31,11 +29,7 @@ const CommentForm = (props) => {
   useEffect(() => {
     const fetchCommentDetails = async () => {
       const response = await fetch(
-        'https://serene-waters-04286.herokuapp.com/posts/' +
-          id +
-          '/comments/' +
-          commentId +
-          '/edit',
+        baseUrl + '/posts/' + id + '/comments/' + commentId + '/edit',
         {
           mode: 'cors',
           headers: {

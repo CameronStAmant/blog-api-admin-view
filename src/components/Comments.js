@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import baseUrl from '../const';
 const { DateTime } = require('luxon');
 
 const Comments = (props) => {
@@ -17,10 +18,7 @@ const Comments = (props) => {
       },
     };
     fetch(
-      'https://serene-waters-04286.herokuapp.com/posts/' +
-        props.postid +
-        '/comments/' +
-        commentId,
+      baseUrl + '/posts/' + props.postid + '/comments/' + commentId,
       requestOptions
     ).then(() => {
       setComments([]);
@@ -30,9 +28,7 @@ const Comments = (props) => {
 
   const fetchComments = async () => {
     const response = await fetch(
-      'https://serene-waters-04286.herokuapp.com/posts/' +
-        props.postid +
-        '/comments',
+      baseUrl + '/posts/' + props.postid + '/comments',
       {
         mode: 'cors',
       }

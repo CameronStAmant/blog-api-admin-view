@@ -1,6 +1,7 @@
 import Layout from './Layout';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import baseUrl from '../const';
 
 const Login = (props) => {
   const [username, setUsername] = useState(null);
@@ -19,7 +20,7 @@ const Login = (props) => {
         adminSite: true,
       }),
     };
-    fetch('https://serene-waters-04286.herokuapp.com/login', requestOptions)
+    fetch(baseUrl + '/login', requestOptions)
       .then((response) => response.json())
       .then((results) => {
         if (results.token !== undefined) {

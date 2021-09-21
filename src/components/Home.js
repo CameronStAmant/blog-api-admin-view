@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import Layout from './Layout';
+import baseUrl from '../const';
 
 const Home = (props) => {
   const [posts, setPosts] = useState(null);
@@ -22,22 +23,16 @@ const Home = (props) => {
         published: !post.published,
       }),
     };
-    fetch(
-      'https://serene-waters-04286.herokuapp.com/posts/' + post.id,
-      requestOptions
-    ).then((results) => {
+    fetch(baseUrl + '/posts/' + post.id, requestOptions).then((results) => {
       setRefresh(!refresh);
     });
   };
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(
-        'https://serene-waters-04286.herokuapp.com/posts',
-        {
-          mode: 'cors',
-        }
-      );
+      const response = await fetch(baseUrl + '/posts', {
+        mode: 'cors',
+      });
       const data = await response.json();
       const item = data.posts;
       const listPosts = item.map((post) => {
