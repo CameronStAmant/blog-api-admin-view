@@ -10,18 +10,20 @@ const Home = (props) => {
 
   const handleSubmit = (e, post) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('title', post.title);
+    formData.append('body', post.body);
+    formData.append('published', !post.published);
+    formData.append('coverPhoto', post.coverPhoto);
+
     const requestOptions = {
       method: 'PUT',
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('user'),
       },
-      body: JSON.stringify({
-        title: post.title,
-        body: post.body,
-        published: !post.published,
-      }),
+      body: formData,
     };
     fetch(baseUrl + '/posts/' + post.id, requestOptions).then((results) => {
       setRefresh(!refresh);
@@ -42,6 +44,10 @@ const Home = (props) => {
             className="display: grid box-border border-2 shadow-sm rounded-md gap-4 border-green-200 mx-2 auto-rows-min"
           >
             <Link to={'/posts/' + post.id}>
+              <img
+                src={post ? baseUrl + '/uploads/' + post.coverPhoto : ''}
+                alt="Post Cover"
+              />
               <p className="m-14 text-center text-xl font-semibold">
                 {post.title}
               </p>

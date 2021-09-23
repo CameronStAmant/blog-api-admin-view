@@ -5,6 +5,8 @@ import baseUrl from '../const';
 
 const PostForm = (props) => {
   const [postTitle, setPostTitle] = useState(null);
+  const [postCoverPhoto, setPostCoverPhoto] = useState(null);
+  const [coverPhotoURL, setCoverPhotoURL] = useState(null);
   const [postBody, setPostBody] = useState(null);
   const [redirect, setRedirect] = useState(false);
   const [newUrl, setNewUrl] = useState(null);
@@ -13,17 +15,18 @@ const PostForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (id === undefined) {
+      const formData = new FormData();
+      formData.append('author', props.userId);
+      formData.append('title', postTitle);
+      formData.append('body', postBody);
+      formData.append('coverPhoto', postCoverPhoto);
+
       const requestOptions = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: 'Bearer ' + localStorage.getItem('user'),
         },
-        body: JSON.stringify({
-          author: props.userId,
-          title: postTitle,
-          body: postBody,
-        }),
+        body: formData,
       };
       fetch(baseUrl + '/posts/', requestOptions)
         .then((response) => response.json())
@@ -34,17 +37,31 @@ const PostForm = (props) => {
           console.log('The fetch error is: ' + error);
         });
     } else {
+      const formData = new FormData();
+      formData.append('title', postTitle);
+      formData.append('body', postBody);
+      formData.append('coverPhoto', postCoverPhoto);
+
       const requestOptions = {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: 'Bearer ' + localStorage.getItem('user'),
         },
-        body: JSON.stringify({ title: postTitle, body: postBody }),
+        body: formData,
       };
       fetch(baseUrl + '/posts/' + id, requestOptions).then(() =>
         setRedirect(true)
       );
+    }
+  };
+
+  const coverPhotoTernary = (e) => {
+    e.preventDefault();
+    if (coverPhotoURL === null) {
+      setPostCoverPhoto(e.target.files[0]);
+      setCoverPhotoURL(URL.createObjectURL(e.target.files[0]));
+    } else {
+      setCoverPhotoURL(null);
     }
   };
 
@@ -55,13 +72,15 @@ const PostForm = (props) => {
         const response = await fetch(baseUrl + '/posts/' + id + '/edit', {
           mode: 'cors',
           headers: {
-            'Content-Type': 'application/json',
             Authorization: 'Bearer ' + localStorage.getItem('user'),
           },
         });
         const data = await response.json();
         const item = data.post;
+        console.log(item);
         setPostTitle(item.title);
+        setPostCoverPhoto(item.coverPhoto);
+        setCoverPhotoURL(baseUrl + '/uploads/' + item.coverPhoto);
         setPostBody(item.body);
       };
       fetchPostDetails();
@@ -86,6 +105,29 @@ const PostForm = (props) => {
             onChange={(e) => setPostTitle(e.target.value)}
             required
           />
+          <br />
+          <label>Cover photo</label>
+          <br />
+          {coverPhotoURL && (
+            <div>
+              <img src={coverPhotoURL} alt="Cover" />
+              <button onClick={(e) => coverPhotoTernary(e)}>
+                Remove Image
+              </button>
+            </div>
+          )}
+          {coverPhotoURL === null && (
+            <input
+              className=""
+              type="file"
+              name="coverPhoto"
+              id="coverPhoto"
+              v
+              onChange={(e) => coverPhotoTernary(e)}
+              required
+            />
+          )}
+
           <br />
           <label>Body: </label>
           <br />

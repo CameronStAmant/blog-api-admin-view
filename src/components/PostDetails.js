@@ -67,6 +67,12 @@ const PostDetails = (props) => {
               </div>
             </div>
           </div>
+          <img
+            src={
+              postDetails ? baseUrl + '/uploads/' + postDetails.coverPhoto : ''
+            }
+            alt="cover"
+          />
           <p className="mx-2 px-1"> {postDetails ? postDetails.body : ''}</p>
         </div>
         <Comments postid={id} />
