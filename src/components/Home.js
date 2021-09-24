@@ -90,28 +90,26 @@ const Home = (props) => {
   }, [refresh]);
 
   return (
-    <div className="bg-gray-600 min-h-screen">
-      <Layout authState={props.authState}>
-        <div className="grid grid-rows-home row-start-2 mx-4">
-          <div className="flex flex-col text-2xl font-semibold text-center">
-            <h2 className="place-self-center text-3xl text-green-900">
-              Welcome to the blog!
-            </h2>
-            <Link to="/posts/new">
-              <button
-                type="button"
-                className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-              >
-                New Post
-              </button>
-            </Link>
-          </div>
-          <ul className="grid md:grid-cols-2 auto-rows-min lg:grid-cols-3 gap-4">
-            {posts ? posts : ''}
-          </ul>
+    <Layout authState={props.authState}>
+      <div className="grid grid-rows-home row-start-2 mx-4">
+        <div className="flex flex-col text-2xl font-semibold text-center">
+          <h2 className="place-self-center text-3xl text-green-900">
+            Welcome to the blog!
+          </h2>
+          <Link to="/posts/new">
+            <button
+              type="button"
+              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
+            >
+              New Post
+            </button>
+          </Link>
         </div>
-      </Layout>
-    </div>
+        <ul className="grid md:grid-cols-2 auto-rows-min lg:grid-cols-3 gap-4">
+          {posts ? posts : ''}
+        </ul>
+      </div>
+    </Layout>
   );
 };
 

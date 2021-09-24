@@ -88,68 +88,65 @@ const PostForm = (props) => {
   }, [id]);
 
   return (
-    <div className="bg-gray-600 min-h-screen">
-      <Layout authState={props.authState}>
-        {newUrl !== null && <Redirect to={newUrl} />}
-        {redirect === true && newUrl === null && (
-          <Redirect from="/posts/:id/edit" to={'/posts/' + id} />
-        )}
-        <div className="justify-self-stretch col-span-full row-start-2 h-full">
-          <form className="mx-4 text-center" onSubmit={handleSubmit}>
-            <label>Title: </label>
-            <br />
+    <Layout authState={props.authState}>
+      {newUrl !== null && <Redirect to={newUrl} />}
+      {redirect === true && newUrl === null && (
+        <Redirect from="/posts/:id/edit" to={'/posts/' + id} />
+      )}
+      <div className="justify-self-stretch col-span-full row-start-2 h-full">
+        <form className="mx-4 text-center" onSubmit={handleSubmit}>
+          <label>Title: </label>
+          <br />
+          <input
+            className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
+            type="text"
+            name="title"
+            value={postTitle ? postTitle : ''}
+            onChange={(e) => setPostTitle(e.target.value)}
+            required
+          />
+          <br />
+          <label>Cover photo</label>
+          <br />
+          {coverPhotoURL && (
+            <div>
+              <img src={coverPhotoURL} alt="Cover" />
+              <button onClick={(e) => coverPhotoTernary(e)}>
+                Remove Image
+              </button>
+            </div>
+          )}
+          {coverPhotoURL === null && (
             <input
-              className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
-              type="text"
-              name="title"
-              value={postTitle ? postTitle : ''}
-              onChange={(e) => setPostTitle(e.target.value)}
+              className=""
+              type="file"
+              name="coverPhoto"
+              id="coverPhoto"
+              onChange={(e) => coverPhotoTernary(e)}
               required
             />
-            <br />
-            <label>Cover photo</label>
-            <br />
-            {coverPhotoURL && (
-              <div>
-                <img src={coverPhotoURL} alt="Cover" />
-                <button onClick={(e) => coverPhotoTernary(e)}>
-                  Remove Image
-                </button>
-              </div>
-            )}
-            {coverPhotoURL === null && (
-              <input
-                className=""
-                type="file"
-                name="coverPhoto"
-                id="coverPhoto"
-                v
-                onChange={(e) => coverPhotoTernary(e)}
-                required
-              />
-            )}
+          )}
 
-            <br />
-            <label>Body: </label>
-            <br />
-            <textarea
-              className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
-              rows="12"
-              name="body"
-              value={postBody ? postBody : ''}
-              onChange={(e) => setPostBody(e.target.value)}
-              required
-            />
-            <br />
-            <input
-              type="submit"
-              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-              value="Submit"
-            />
-          </form>
-        </div>
-      </Layout>
-    </div>
+          <br />
+          <label>Body: </label>
+          <br />
+          <textarea
+            className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
+            rows="12"
+            name="body"
+            value={postBody ? postBody : ''}
+            onChange={(e) => setPostBody(e.target.value)}
+            required
+          />
+          <br />
+          <input
+            type="submit"
+            className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
+            value="Submit"
+          />
+        </form>
+      </div>
+    </Layout>
   );
 };
 
