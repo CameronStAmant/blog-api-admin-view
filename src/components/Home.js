@@ -56,31 +56,31 @@ const Home = (props) => {
                   <div className="text-3xl font-semibold flex-grow px-4 rounded-bl-md  bg-white -mt-1 pb-1">
                     {post.title}
                   </div>
-                  <div className="bg-white justify-end px-4 pt-1 -mt-1 rounded-br-md">
-                    {post.published.toString() === 'true' && (
-                      <form onSubmit={(e) => handleSubmit(e, post)}>
-                        <input
-                          className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-                          type="submit"
-                          id="togglePublish"
-                          value="Published"
-                        />
-                      </form>
-                    )}
-                    {post.published.toString() === 'false' && (
-                      <form onSubmit={(e) => handleSubmit(e, post)}>
-                        <input
-                          className="border-solid border-4 border-red-200 rounded-md bg-red-200 hover:bg-red-300 hover:border-red-300 active:bg-red-400 active:border-red-400 shadow-sm"
-                          type="submit"
-                          id="togglePublish"
-                          value="Unpublished"
-                        />
-                      </form>
-                    )}
-                  </div>
                 </div>
               </div>
             </Link>
+            <div className="bg-white justify-end px-4 pt-1 -mt-1 rounded-br-md relative">
+              {post.published.toString() === 'true' && (
+                <form onSubmit={(e) => handleSubmit(e, post)}>
+                  <input
+                    className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm absolute right-4 -top-8"
+                    type="submit"
+                    id="togglePublish"
+                    value="Published"
+                  />
+                </form>
+              )}
+              {post.published.toString() === 'false' && (
+                <form onSubmit={(e) => handleSubmit(e, post)}>
+                  <input
+                    className="border-solid border-4 border-red-200 rounded-md bg-red-200 hover:bg-red-300 hover:border-red-300 active:bg-red-400 active:border-red-400 shadow-sm absolute right-4 -top-8"
+                    type="submit"
+                    id="togglePublish"
+                    value="Unpublished"
+                  />
+                </form>
+              )}
+            </div>
           </li>
         );
       });
