@@ -1,28 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import NavButton from './NavButton';
 
 const Header = (props) => {
   return (
-    <div className="display: grid grid-cols-3 col-span-3 row-start-1 bg-green-100 py-2">
-      <ul className="display: grid col-start-1 col-span-full grid-flow-col place-items-center text-center">
-        <li className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-5/6 active:bg-green-400 active:border-green-400 shadow-sm">
-          <NavLink to="/" className="display: block">
-            Home
-          </NavLink>
-        </li>
-        {!props.authState && (
-          <li className="sm:col-start-3 lg:col-start-4 bordber-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-5/6 active:bg-green-400 active:border-green-400 shadow-sm">
-            <NavLink to="/login" className="display: block">
-              Login
-            </NavLink>
-          </li>
-        )}
-        {props.authState && (
-          <li className="sm:col-start-4 lg:col-start-5 border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-5/6 active:bg-green-400 active:border-green-400 shadow-sm">
-            <NavLink to="/logout" className="display: block">
-              Log out
-            </NavLink>
-          </li>
-        )}
+    <div className="grid grid-cols-3 row-start-1 bg-gradient-to-b from-green-900 to-green-400 py-2 text-white text-center text-lg">
+      <ul className="flex gap-4 col-span-full grid-flow-col place-items-center mx-4">
+        <NavButton link="/" text="Home" />
+        {!props.authState && <NavButton link="/login" text="Login" />}
+        {props.authState && <NavButton link="/logout" text="Log out" />}
       </ul>
     </div>
   );

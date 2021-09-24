@@ -47,12 +47,12 @@ const CommentForm = (props) => {
   return (
     <Layout authState={props.authState}>
       <div className="justify-self-stretch gap-4 col-span-full row-start-2">
-        <form className="mt-14 mx-2 text-center h-auto" onSubmit={handleSubmit}>
+        <form className="mt-14 mx-4 text-center h-auto" onSubmit={handleSubmit}>
           <label>Body: </label>
           <br />
           <textarea
             className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
-            rows="20"
+            rows="12"
             name="body"
             value={commentBody ? commentBody : ''}
             onChange={(e) => setCommentBody(e.target.value)}

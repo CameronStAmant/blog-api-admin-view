@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <ul className="display: grid grid-cols-3 text-center py-2 row-start-3 col-span-full">
-      <li>Privacy</li>
-      <li>About</li>
-      <li>Contact us</li>
+    <ul className="flex text-center content-evenly mx-4 row-start-3 col-span-full">
+      <li className="flex-1">Privacy</li>
+      <li className="flex-1">About</li>
+      <li className="flex-1">Contact us</li>
     </ul>
   );
 };

@@ -41,28 +41,46 @@ const Home = (props) => {
         return (
           <li
             key={post.title}
-            className="display: grid box-border border-2 shadow-sm rounded-md gap-4 border-green-200 mx-2 auto-rows-min"
+            className="box-border shadow-sm rounded-md h-full"
           >
             <Link to={'/posts/' + post.id}>
-              <img
-                src={post ? baseUrl + '/uploads/' + post.coverPhoto : ''}
-                alt="Post Cover"
-              />
-              <p className="m-14 text-center text-xl font-semibold">
-                {post.title}
-              </p>
+              <div className="grid auto-rows-post">
+                <div className="overflow-hidden h-postCoverPhoto">
+                  <img
+                    className="w-full rounded-tl-md rounded-tr-md"
+                    src={post ? baseUrl + '/uploads/' + post.coverPhoto : ''}
+                    alt="Post Cover"
+                  />
+                </div>
+                <div className="flex">
+                  <div className="text-3xl font-semibold flex-grow px-4 rounded-bl-md  bg-white -mt-1 pb-1">
+                    {post.title}
+                  </div>
+                  <div className="bg-white justify-end px-4 pt-1 -mt-1 rounded-br-md">
+                    {post.published.toString() === 'true' && (
+                      <form onSubmit={(e) => handleSubmit(e, post)}>
+                        <input
+                          className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
+                          type="submit"
+                          id="togglePublish"
+                          value="Published"
+                        />
+                      </form>
+                    )}
+                    {post.published.toString() === 'false' && (
+                      <form onSubmit={(e) => handleSubmit(e, post)}>
+                        <input
+                          className="border-solid border-4 border-red-200 rounded-md bg-red-200 hover:bg-red-300 hover:border-red-300 active:bg-red-400 active:border-red-400 shadow-sm"
+                          type="submit"
+                          id="togglePublish"
+                          value="Unpublished"
+                        />
+                      </form>
+                    )}
+                  </div>
+                </div>
+              </div>
             </Link>
-            <div className="display: grid mb-8">
-              <p>Published: {post.published.toString()}</p>
-              <form onSubmit={(e) => handleSubmit(e, post)}>
-                <input
-                  className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-2/6 active:bg-green-400 active:border-green-400 shadow-sm"
-                  type="submit"
-                  id="togglePublish"
-                  value="Toggle"
-                />
-              </form>
-            </div>
           </li>
         );
       });
@@ -72,24 +90,28 @@ const Home = (props) => {
   }, [refresh]);
 
   return (
-    <Layout authState={props.authState}>
-      <div className="display: grid grid-rows-home auto-rows-min row-start-2 col-span-full">
-        <div className="row-start-1 place-self-center min-h-px col-span-full text-2xl font-semibold text-center">
-          <h2>Welcome to the blog admin site!</h2>
-          <Link to="/posts/new">
-            <button
-              type="button"
-              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-2/6 active:bg-green-400 active:border-green-400 shadow-sm"
-            >
-              New Post
-            </button>
-          </Link>
+    <div className="bg-gray-600 min-h-screen">
+      <Layout authState={props.authState}>
+        <div className="grid grid-rows-home row-start-2 mx-4">
+          <div className="flex flex-col text-2xl font-semibold text-center">
+            <h2 className="place-self-center text-3xl text-green-900">
+              Welcome to the blog!
+            </h2>
+            <Link to="/posts/new">
+              <button
+                type="button"
+                className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
+              >
+                New Post
+              </button>
+            </Link>
+          </div>
+          <ul className="grid md:grid-cols-2 auto-rows-min lg:grid-cols-3 gap-4">
+            {posts ? posts : ''}
+          </ul>
         </div>
-        <ul className="display: grid grid-flow-row md:grid-cols-2 row-start-2 lg:grid-cols-3 col-span-full gap-y-4 h-full text-center auto-rows-min">
-          {posts ? posts : ''}
-        </ul>
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   );
 };
 
