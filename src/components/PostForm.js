@@ -109,7 +109,7 @@ const PostForm = (props) => {
           <label>Cover photo</label>
           <br />
           {coverPhotoURL && (
-            <div>
+            <div className="overflow-hidden h-postCoverPhoto">
               <img src={coverPhotoURL} alt="Cover" />
               <button onClick={(e) => coverPhotoTernary(e)}>
                 Remove Image
