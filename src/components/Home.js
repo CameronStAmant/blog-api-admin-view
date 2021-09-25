@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import Layout from './Layout';
 import baseUrl from '../const';
+import ArticleCard from './ArticleCard';
 
 const Home = (props) => {
   const [posts, setPosts] = useState(null);
@@ -43,22 +44,7 @@ const Home = (props) => {
             key={post.title}
             className="box-border shadow-sm rounded-md h-full"
           >
-            <Link to={'/posts/' + post.id}>
-              <div className="grid auto-rows-post">
-                <div className="overflow-hidden h-postCoverPhoto">
-                  <img
-                    className="w-full rounded-tl-md rounded-tr-md"
-                    src={post ? baseUrl + '/uploads/' + post.coverPhoto : ''}
-                    alt="Post Cover"
-                  />
-                </div>
-                <div className="flex">
-                  <div className="text-3xl font-semibold flex-grow px-4 rounded-bl-md  bg-white -mt-1 pb-1">
-                    {post.title}
-                  </div>
-                </div>
-              </div>
-            </Link>
+            <ArticleCard post={post} />
             <div className="bg-white justify-end px-4 pt-1 -mt-1 rounded-br-md relative">
               {post.published.toString() === 'true' && (
                 <form onSubmit={(e) => handleSubmit(e, post)}>
