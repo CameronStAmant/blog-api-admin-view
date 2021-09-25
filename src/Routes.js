@@ -7,6 +7,7 @@ import PostDetails from './components/PostDetails';
 import PostForm from './components/PostForm';
 import CommentForm from './components/CommentForm';
 import baseUrl from './const';
+import CommentEditPage from './components/CommentEditPage';
 
 const Routes = () => {
   const [auth, setAuth] = useState(false);
@@ -101,7 +102,7 @@ const Routes = () => {
           <Route
             exact
             path="/posts/:id/comments/:commentId/edit"
-            render={() => <CommentForm authState={auth} />}
+            render={() => <CommentEditPage authState={auth} />}
           />
         </Switch>
       )}
