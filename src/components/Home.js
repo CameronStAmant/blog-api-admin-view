@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Layout from './Layout';
 import baseUrl from '../const';
 import ArticleCard from './ArticleCard';
+import Button from './Button';
 
 const Home = (props) => {
   const [posts, setPosts] = useState(null);
   const [refresh, setRefresh] = useState(false);
-  const history = useHistory();
 
   const handleSubmit = (e, post) => {
     e.preventDefault();
@@ -47,24 +47,20 @@ const Home = (props) => {
             <ArticleCard post={post} />
             <div className="bg-white justify-end px-4 pt-1 -mt-1 rounded-br-md relative">
               {post.published.toString() === 'true' && (
-                <form onSubmit={(e) => handleSubmit(e, post)}>
-                  <input
-                    className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm absolute right-4 -top-8"
-                    type="submit"
-                    id="togglePublish"
-                    value="Published"
-                  />
-                </form>
+                <Button
+                  value="Published"
+                  color="green"
+                  addonClasses={'absolute right-4 -top-8'}
+                  onSubmit={(e) => handleSubmit(e, post)}
+                />
               )}
               {post.published.toString() === 'false' && (
-                <form onSubmit={(e) => handleSubmit(e, post)}>
-                  <input
-                    className="border-solid border-4 border-red-200 rounded-md bg-red-200 hover:bg-red-300 hover:border-red-300 active:bg-red-400 active:border-red-400 shadow-sm absolute right-4 -top-8"
-                    type="submit"
-                    id="togglePublish"
-                    value="Unpublished"
-                  />
-                </form>
+                <Button
+                  value="Unpublished"
+                  color="red"
+                  addonClasses={'absolute right-4 -top-8'}
+                  onSubmit={(e) => handleSubmit(e, post)}
+                />
               )}
             </div>
           </li>
@@ -83,12 +79,7 @@ const Home = (props) => {
             Welcome to the blog!
           </h2>
           <Link to="/posts/new">
-            <button
-              type="button"
-              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-            >
-              New Post
-            </button>
+            <Button value="New Post" color="green" />
           </Link>
         </div>
         <ul className="grid md:grid-cols-2 auto-rows-min lg:grid-cols-3 gap-4">

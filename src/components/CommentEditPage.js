@@ -1,7 +1,4 @@
 import Layout from './Layout';
-import { useParams, Link, useHistory } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import baseUrl from '../const';
 import CommentForm from './CommentForm';
 
 const CommentEditPage = (props) => {

@@ -1,7 +1,7 @@
-import Layout from './Layout';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import baseUrl from '../const';
+import Button from './Button';
 
 const CommentForm = (props) => {
   const [commentBody, setCommentBody] = useState(null);
@@ -69,7 +69,7 @@ const CommentForm = (props) => {
 
   return (
     <div className="justify-self-stretch gap-4 col-span-full row-start-2">
-      <form className="mt-14 mx-4 text-center h-auto" onSubmit={handleSubmit}>
+      <form className="mt-14 mx-4 text-center h-auto">
         <label>Body: </label>
         <br />
         <textarea
@@ -82,20 +82,10 @@ const CommentForm = (props) => {
         />
         {commentId && (
           <Link to={'/posts/' + id}>
-            <button
-              type="button"
-              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-            >
-              Cancel
-            </button>
+            <Button value="Cancel" color="green" />
           </Link>
         )}
-        <input
-          type="submit"
-          id="commentSubmit"
-          className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-          value="Submit"
-        />
+        <Button value="Submit" color="green" onSubmit={handleSubmit} />
       </form>
     </div>
   );
