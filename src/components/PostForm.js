@@ -1,5 +1,5 @@
 import Layout from './Layout';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Link, Redirect } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import baseUrl from '../const';
 
@@ -126,7 +126,6 @@ const PostForm = (props) => {
               required
             />
           )}
-
           <br />
           <label>Body: </label>
           <br />
@@ -139,6 +138,26 @@ const PostForm = (props) => {
             required
           />
           <br />
+          {id === undefined && (
+            <Link to="/">
+              <button
+                type="button"
+                className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
+              >
+                Cancel
+              </button>
+            </Link>
+          )}
+          {id !== undefined && (
+            <Link to={'/posts/' + id}>
+              <button
+                type="button"
+                className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
+              >
+                Cancel
+              </button>
+            </Link>
+          )}
           <input
             type="submit"
             className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"

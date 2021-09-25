@@ -1,5 +1,5 @@
 import Layout from './Layout';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import baseUrl from '../const';
 
@@ -58,6 +58,15 @@ const CommentForm = (props) => {
             onChange={(e) => setCommentBody(e.target.value)}
             required
           />
+          <Link to={'/posts/' + id}>
+            <button
+              type="button"
+              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
+            >
+              Cancel
+            </button>
+          </Link>
+
           <input
             type="submit"
             id="commentSubmit"
