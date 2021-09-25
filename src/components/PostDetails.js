@@ -5,11 +5,14 @@ import baseUrl from '../const';
 // import './PostDetails.css';
 import Layout from './Layout';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 
 const PostDetails = (props) => {
   const [postDetails, setPostDetails] = useState(null);
   const { id } = useParams();
   const history = useHistory();
+  const [loadComments, setLoadComments] = useState(false);
+  const [comments, setComments] = useState([]);
 
   const deletePost = (e) => {
     e.preventDefault();
@@ -81,7 +84,19 @@ const PostDetails = (props) => {
           </div>
           <p className="mx-2 px-1"> {postDetails ? postDetails.body : ''}</p>
         </div>
-        <Comments postid={id} />
+        <CommentForm
+          authState={props.authState}
+          userId={props.userId}
+          loadComments={() => setLoadComments(!loadComments)}
+          setComments={() => setComments([])}
+          comments={comments}
+        />
+        <Comments
+          postid={id}
+          loadComments={loadComments}
+          setComments={(state) => setComments(state)}
+          comments={comments}
+        />
       </div>
     </Layout>
   );

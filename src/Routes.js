@@ -91,7 +91,7 @@ const Routes = () => {
           <Route
             exact
             path="/posts/:id"
-            render={() => <PostDetails authState={auth} />}
+            render={() => <PostDetails authState={auth} userId={userId} />}
           />
           <Route
             exact

@@ -77,7 +77,6 @@ const PostForm = (props) => {
         });
         const data = await response.json();
         const item = data.post;
-        console.log(item);
         setPostTitle(item.title);
         setPostCoverPhoto(item.coverPhoto);
         setCoverPhotoURL(baseUrl + '/uploads/' + item.coverPhoto);

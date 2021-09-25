@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import baseUrl from '../const';
 const { DateTime } = require('luxon');
 
 const Comments = (props) => {
-  const [comments, setComments] = useState([]);
-  const [reloadComments, setReloadComments] = useState(false);
-
   const handleDelete = (e, commentId) => {
     e.preventDefault();
     const requestOptions = {
@@ -21,8 +18,7 @@ const Comments = (props) => {
       baseUrl + '/posts/' + props.postid + '/comments/' + commentId,
       requestOptions
     ).then(() => {
-      setComments([]);
-      setReloadComments(!reloadComments);
+      fetchComments();
     });
   };
 
@@ -34,6 +30,7 @@ const Comments = (props) => {
       }
     );
     const data = await response.json();
+    let array = [];
     for (const comment of data.comments) {
       let element;
       element = (
@@ -73,14 +70,16 @@ const Comments = (props) => {
           </div>
         </div>
       );
-      setComments((comments) => [...comments, element]);
+
+      array = [...array, element];
+      props.setComments(array);
     }
   };
 
   useEffect(() => {
     fetchComments();
-  }, [reloadComments]);
-  return <div className="justify-self-stretch my-14">{comments}</div>;
+  }, [props.loadComments]);
+  return <div className="justify-self-stretch my-14">{props.comments}</div>;
 };
 
 export default Comments;
