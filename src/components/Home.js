@@ -51,7 +51,7 @@ const Home = (props) => {
                   value="Published"
                   color="green"
                   addonClasses={'absolute right-4 -top-8'}
-                  onSubmit={(e) => handleSubmit(e, post)}
+                  onClick={(e) => handleSubmit(e, post)}
                 />
               )}
               {post.published.toString() === 'false' && (
@@ -59,7 +59,7 @@ const Home = (props) => {
                   value="Unpublished"
                   color="red"
                   addonClasses={'absolute right-4 -top-8'}
-                  onSubmit={(e) => handleSubmit(e, post)}
+                  onClick={(e) => handleSubmit(e, post)}
                 />
               )}
             </div>
@@ -78,9 +78,11 @@ const Home = (props) => {
           <h2 className="place-self-center text-3xl text-green-900">
             Welcome to the blog!
           </h2>
-          <Link to="/posts/new">
-            <Button value="New Post" color="green" />
-          </Link>
+          <div>
+            <Link to="/posts/new">
+              <Button value="New Post" color="green" />
+            </Link>
+          </div>
         </div>
         <ul className="grid md:grid-cols-2 auto-rows-min lg:grid-cols-3 gap-4">
           {posts ? posts : ''}

@@ -83,7 +83,7 @@ const CommentForm = (props) => {
             <Button value="Cancel" color="green" />
           </Link>
         )}
-        <Button value="Submit" color="green" onSubmit={handleSubmit} />
+        <Button value="Submit" color="green" onClick={handleSubmit} />
       </form>
     </div>
   );

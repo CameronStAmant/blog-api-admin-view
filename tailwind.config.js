@@ -21,6 +21,9 @@ module.exports = {
       postCoverPhoto: '140px',
       post: '200px',
     },
+    padding: {
+      md: '20px',
+    },
   },
   variants: {
     extend: { backgroundColor: ['active'], borderColor: ['active'] },

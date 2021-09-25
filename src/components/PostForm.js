@@ -117,7 +117,7 @@ const PostForm = (props) => {
               <Button
                 value="Remove Image"
                 color="green"
-                onSubmit={(e) => coverPhotoTernary(e)}
+                onClick={(e) => coverPhotoTernary(e)}
               />
             </div>
           )}
@@ -149,7 +149,7 @@ const PostForm = (props) => {
               <Button value="Cancel" color="green" />
             </Link>
           )}
-          <Button value="Submit" color="green" onSubmit={handleSubmit} />
+          <Button value="Submit" color="green" onClick={handleSubmit} />
         </form>
       </div>
     </Layout>

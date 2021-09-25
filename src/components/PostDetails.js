@@ -58,11 +58,11 @@ const PostDetails = (props) => {
                 <Link to={useLocation().pathname + '/edit'}>
                   <Button value="Edit" color="green" />
                 </Link>
-                <Button value="Delete" color="green" />
+                <Button value="Delete" color="green" onClick={deletePost} />
               </div>
             </div>
           </div>
-          <div className="overflow-hidden h-postCoverPhoto">
+          <div className="overflow-hidden h-postCoverPhoto rounded-md">
             <img
               src={
                 postDetails
