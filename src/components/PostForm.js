@@ -2,6 +2,7 @@ import Layout from './Layout';
 import { useParams, Link, Redirect } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import baseUrl from '../const';
+import Button from './Button';
 
 const PostForm = (props) => {
   const [postTitle, setPostTitle] = useState(null);
@@ -93,7 +94,7 @@ const PostForm = (props) => {
         <Redirect from="/posts/:id/edit" to={'/posts/' + id} />
       )}
       <div className="justify-self-stretch col-span-full row-start-2 h-full">
-        <form className="mx-4 text-center" onSubmit={handleSubmit}>
+        <form className="mx-4 text-center">
           <label>Title: </label>
           <br />
           <input
@@ -108,11 +109,15 @@ const PostForm = (props) => {
           <label>Cover photo</label>
           <br />
           {coverPhotoURL && (
-            <div className="overflow-hidden h-postCoverPhoto">
-              <img src={coverPhotoURL} alt="Cover" />
-              <button onClick={(e) => coverPhotoTernary(e)}>
-                Remove Image
-              </button>
+            <div>
+              <div className="overflow-hidden h-postCoverPhoto">
+                <img src={coverPhotoURL} alt="Cover" />
+              </div>
+              <Button
+                value="Remove Image"
+                color="green"
+                onSubmit={(e) => coverPhotoTernary(e)}
+              />
             </div>
           )}
           {coverPhotoURL === null && (
@@ -139,29 +144,15 @@ const PostForm = (props) => {
           <br />
           {id === undefined && (
             <Link to="/">
-              <button
-                type="button"
-                className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-              >
-                Cancel
-              </button>
+              <Button value="Cancel" color="green" />
             </Link>
           )}
           {id !== undefined && (
             <Link to={'/posts/' + id}>
-              <button
-                type="button"
-                className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-              >
-                Cancel
-              </button>
+              <Button value="Cancel" color="green" />
             </Link>
           )}
-          <input
-            type="submit"
-            className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 active:bg-green-400 active:border-green-400 shadow-sm"
-            value="Submit"
-          />
+          <Button value="Submit" color="green" onSubmit={handleSubmit} />
         </form>
       </div>
     </Layout>

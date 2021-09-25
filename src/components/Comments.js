@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import baseUrl from '../const';
+import Button from './Button';
+
 const { DateTime } = require('luxon');
 
 const Comments = (props) => {
@@ -52,21 +54,9 @@ const Comments = (props) => {
                 '/posts/' + props.postid + '/comments/' + comment._id + '/edit'
               }
             >
-              <button
-                type="button"
-                className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-auto active:bg-green-400 active:border-green-400 shadow-sm"
-              >
-                Edit
-              </button>
+              <Button value="Edit" color="green" />
             </Link>
-
-            <button
-              type="button"
-              className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-auto active:bg-green-400 active:border-green-400 shadow-sm"
-              onClick={(e) => handleDelete(e, comment._id)}
-            >
-              Delete
-            </button>
+            <Button value="Delete" color="green" />
           </div>
         </div>
       );

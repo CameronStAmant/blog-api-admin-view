@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
 import baseUrl from '../const';
+import Button from './Button';
 
 // import './PostDetails.css';
 import Layout from './Layout';
@@ -55,20 +56,9 @@ const PostDetails = (props) => {
             <div>
               <div className="space-x-3">
                 <Link to={useLocation().pathname + '/edit'}>
-                  <button
-                    type="button"
-                    className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-auto active:bg-green-400 active:border-green-400 shadow-sm"
-                  >
-                    Edit
-                  </button>
+                  <Button value="Edit" color="green" />
                 </Link>
-                <button
-                  type="button"
-                  className="border-solid border-4 border-green-200 rounded-md bg-green-200 hover:bg-green-300 hover:border-green-300 w-auto active:bg-green-400 active:border-green-400 shadow-sm"
-                  onClick={deletePost}
-                >
-                  Delete
-                </button>
+                <Button value="Delete" color="green" />
               </div>
             </div>
           </div>
