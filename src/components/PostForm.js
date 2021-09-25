@@ -3,6 +3,7 @@ import { useParams, Link, Redirect } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import baseUrl from '../const';
 import Button from './Button';
+import Textarea from './Textarea';
 
 const PostForm = (props) => {
   const [postTitle, setPostTitle] = useState(null);
@@ -133,13 +134,9 @@ const PostForm = (props) => {
           <br />
           <label>Body: </label>
           <br />
-          <textarea
-            className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
-            rows="12"
-            name="body"
+          <Textarea
             value={postBody ? postBody : ''}
             onChange={(e) => setPostBody(e.target.value)}
-            required
           />
           <br />
           {id === undefined && (

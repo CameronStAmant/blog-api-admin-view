@@ -2,12 +2,13 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import baseUrl from '../const';
 import Button from './Button';
+import Textarea from './Textarea';
 
 const CommentForm = (props) => {
-  const [commentBody, setCommentBody] = useState(null);
+  const [body, setBody] = useState(null);
   const { id, commentId } = useParams();
   const history = useHistory();
-  const [body, setBody] = useState(null);
+  const [bodys, setBodys] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ const CommentForm = (props) => {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + localStorage.getItem('user'),
         },
-        body: JSON.stringify({ body: commentBody }),
+        body: JSON.stringify({ body: body }),
       };
       fetch(
         baseUrl + '/posts/' + id + '/comments/' + commentId,
@@ -35,12 +36,12 @@ const CommentForm = (props) => {
         },
         body: JSON.stringify({
           author: props.userId,
-          body: commentBody,
+          body: body,
         }),
       };
       await fetch(baseUrl + '/posts/' + id + '/comments', requestOptions);
       props.setComments();
-      setBody(null);
+      // setBodys(null);
       props.loadComments();
     }
   };
@@ -59,11 +60,11 @@ const CommentForm = (props) => {
         );
         const data = await response.json();
         const item = data.comment;
-        setCommentBody(item.body);
+        setBody(item.body);
       };
       fetchCommentDetails();
     } else {
-      setCommentBody(null);
+      setBody(null);
     }
   }, [id, commentId, props.comments]);
 
@@ -72,13 +73,10 @@ const CommentForm = (props) => {
       <form className="mt-14 mx-4 text-center h-auto">
         <label>Body: </label>
         <br />
-        <textarea
-          className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
-          rows="12"
+        <Textarea
           name="body"
-          value={commentBody ? commentBody : ''}
-          onChange={(e) => setCommentBody(e.target.value)}
-          required
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
         />
         {commentId && (
           <Link to={'/posts/' + id}>
