@@ -139,17 +139,19 @@ const PostForm = (props) => {
             onChange={(e) => setPostBody(e.target.value)}
           />
           <br />
-          {id === undefined && (
-            <Link to="/">
-              <Button value="Cancel" color="green" />
-            </Link>
-          )}
-          {id !== undefined && (
-            <Link to={'/posts/' + id}>
-              <Button value="Cancel" color="green" />
-            </Link>
-          )}
-          <Button value="Submit" color="green" onClick={handleSubmit} />
+          <div className="space-x-3">
+            {id === undefined && (
+              <Link to="/">
+                <Button value="Cancel" color="green" />
+              </Link>
+            )}
+            {id !== undefined && (
+              <Link to={'/posts/' + id}>
+                <Button value="Cancel" color="green" />
+              </Link>
+            )}
+            <Button value="Submit" color="green" onClick={handleSubmit} />
+          </div>
         </form>
       </div>
     </Layout>

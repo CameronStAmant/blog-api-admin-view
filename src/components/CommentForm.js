@@ -78,12 +78,14 @@ const CommentForm = (props) => {
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />
-        {commentId && (
-          <Link to={'/posts/' + id}>
-            <Button value="Cancel" color="green" />
-          </Link>
-        )}
-        <Button value="Submit" color="green" onClick={handleSubmit} />
+        <div className="space-x-3">
+          {commentId && (
+            <Link to={'/posts/' + id}>
+              <Button value="Cancel" color="green" />
+            </Link>
+          )}
+          <Button value="Submit" color="green" onClick={handleSubmit} />
+        </div>
       </form>
     </div>
   );
