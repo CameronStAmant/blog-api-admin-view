@@ -50,7 +50,7 @@ const Home = (props) => {
                 <Button
                   value="Published"
                   color="green"
-                  addonClasses={'absolute right-4 -top-8'}
+                  addonClasses={'absolute right-5 -top-8'}
                   onClick={(e) => handleSubmit(e, post)}
                 />
               )}
@@ -58,7 +58,7 @@ const Home = (props) => {
                 <Button
                   value="Unpublished"
                   color="red"
-                  addonClasses={'absolute right-4 -top-8'}
+                  addonClasses={'absolute right-5 -top-8'}
                   onClick={(e) => handleSubmit(e, post)}
                 />
               )}
