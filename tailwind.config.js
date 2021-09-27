@@ -25,6 +25,10 @@ module.exports = {
       md: '20px',
       smd: '8px',
     },
+    purge: {
+      content: ['./src/**/*.html'],
+      safelist: ['green', 'red'],
+    },
   },
   variants: {
     extend: { backgroundColor: ['active'], borderColor: ['active'] },

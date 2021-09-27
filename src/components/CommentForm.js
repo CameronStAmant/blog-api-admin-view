@@ -71,7 +71,7 @@ const CommentForm = (props) => {
   return (
     <div className="justify-self-stretch gap-4 col-span-full row-start-2">
       <form className="mt-14 text-center h-auto">
-        <label>Body</label>
+        <label>Comment</label>
         <br />
         <Textarea
           name="body"
