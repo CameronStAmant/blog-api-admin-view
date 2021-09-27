@@ -26,7 +26,6 @@ module.exports = {
       smd: '8px',
     },
     purge: {
-      enabled: true,
       content: ['./src/**/*.html'],
     },
   },
