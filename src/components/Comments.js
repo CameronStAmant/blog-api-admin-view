@@ -66,8 +66,8 @@ const Comments = (props) => {
       );
 
       array = [...array, element];
-      props.setComments(array);
     }
+    props.setComments(array);
   };
 
   useEffect(() => {
