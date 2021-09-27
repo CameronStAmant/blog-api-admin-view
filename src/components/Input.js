@@ -1,13 +1,15 @@
 function Input(props) {
   return (
     <input
-      className="
-      input
-      w-48
+      className={`
       border-2
+      box-border
       border-green-200
-      rounded-md 
-      focus:border-green-500"
+      focus:border-green-500
+      shadow-sm
+      block
+      mb-2
+      ${props.addonClasses}`}
       type={props.type}
       id={props.id}
       name={props.name}

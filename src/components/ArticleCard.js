@@ -14,7 +14,7 @@ function ArticleCard(props) {
             alt="Post Cover"
           />
         </div>
-        <div className="text-2xl font-semibold flex-grow px-md rounded-bl-md rounded-br-md bg-white -mt-1 mb-1 pb-1">
+        <div className="text-2xl font-semibold flex-grow px-md rounded-bl-md rounded-br-md bg-white -mt-1 pb-1">
           {props.post.title}
         </div>
       </div>

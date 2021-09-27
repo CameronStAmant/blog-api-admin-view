@@ -37,11 +37,13 @@ const Comments = (props) => {
       let element;
       element = (
         <div
-          className="box-border border-solid shadow-md p-4 grid gap-2 auto-rows-min border-2 border-green-200 rounded-md"
+          className="box-border border-solid shadow-md p-smd grid gap-2 auto-rows-min border-2 border-green-200 rounded-md mb-2"
           id={comment._id}
           key={comment._id}
         >
-          <h4>{comment.author.username}</h4>
+          <h4 className="text-green-900 font-bold">
+            {comment.author.username}
+          </h4>
           <p className="italic text-sm">
             {DateTime.fromISO(comment.timestamp).toLocaleString(
               DateTime.DATETIME_MED

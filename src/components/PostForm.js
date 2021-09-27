@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import baseUrl from '../const';
 import Button from './Button';
 import Textarea from './Textarea';
+import Input from './Input';
 
 const PostForm = (props) => {
   const [postTitle, setPostTitle] = useState(null);
@@ -96,22 +97,18 @@ const PostForm = (props) => {
       )}
       <div className="justify-self-stretch col-span-full row-start-2 h-full">
         <form className="mx-4 text-center">
-          <label>Title: </label>
-          <br />
-          <input
-            className="box-border border-2 shadow-sm rounded-md gap-4 border-green-200 auto-rows-min w-full"
+          <label>Title</label>
+          <Input
             type="text"
             name="title"
             value={postTitle ? postTitle : ''}
             onChange={(e) => setPostTitle(e.target.value)}
-            required
+            addonClasses="w-full rounded-md"
           />
-          <br />
           <label>Cover photo</label>
-          <br />
           {coverPhotoURL && (
             <div>
-              <div className="overflow-hidden h-postCoverPhoto">
+              <div className="overflow-hidden h-postCoverPhoto mb-2">
                 <img src={coverPhotoURL} alt="Cover" />
               </div>
               <Button
@@ -121,24 +118,21 @@ const PostForm = (props) => {
               />
             </div>
           )}
+          <div></div>
           {coverPhotoURL === null && (
-            <input
-              className=""
+            <Input
               type="file"
               name="coverPhoto"
               id="coverPhoto"
               onChange={(e) => coverPhotoTernary(e)}
-              required
+              addonClasses="border-none shadow-none m-auto"
             />
           )}
-          <br />
-          <label>Body: </label>
-          <br />
+          <label>Body</label>
           <Textarea
             value={postBody ? postBody : ''}
             onChange={(e) => setPostBody(e.target.value)}
           />
-          <br />
           <div className="space-x-3">
             {id === undefined && (
               <Link to="/">

@@ -39,26 +39,24 @@ const Login = (props) => {
     <Layout>
       <div className="grid place-content-center">
         <form className="text-center">
-          <label htmlFor="username-field">Username:</label>
-          <br />
+          <label htmlFor="username-field">Username</label>
           <Input
             type="text"
             id="username-field"
             name="username"
             value={username ? username : ''}
             onChange={(e) => setUsername(e.target.value)}
+            addonClasses="rounded-md"
           />
-          <br />
-          <label htmlFor="password-field">Password:</label>
-          <br />
+          <label htmlFor="password-field">Password</label>
           <Input
             type="password"
             id="password-field"
             name="password"
             value={password ? password : ''}
             onChange={(e) => setPassword(e.target.value)}
+            addonClasses="rounded-md"
           />
-          <br />
           <Button
             value="Login"
             color="green"
