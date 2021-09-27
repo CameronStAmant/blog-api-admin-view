@@ -26,17 +26,8 @@ module.exports = {
       smd: '8px',
     },
     purge: {
+      enabled: true,
       content: ['./src/**/*.html'],
-      safelist: [
-        'green',
-        'red',
-        'border-green-200',
-        'bg-green-200',
-        'hover:bg-green-300',
-        'hover:border-green-300',
-        'active:bg-green-400',
-        'active:border-green-400',
-      ],
     },
   },
   variants: {
