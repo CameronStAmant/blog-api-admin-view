@@ -75,7 +75,7 @@ const Home = (props) => {
     <Layout authState={props.authState}>
       <div className="grid grid-rows-home row-start-2 mx-4">
         <div className="flex flex-col text-2xl font-semibold text-center">
-          <h2 className="place-self-center text-3xl text-dark-cyan">
+          <h2 className="place-self-center text-3xl text-dark-cyan font-normal">
             Welcome to the blog!
           </h2>
           <div>

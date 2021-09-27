@@ -118,16 +118,17 @@ const PostForm = (props) => {
               />
             </div>
           )}
-          <div></div>
-          {coverPhotoURL === null && (
-            <Input
-              type="file"
-              name="coverPhoto"
-              id="coverPhoto"
-              onChange={(e) => coverPhotoTernary(e)}
-              addonClasses="border-none shadow-none m-auto"
-            />
-          )}
+          <div className="mb-2">
+            {coverPhotoURL === null && (
+              <Input
+                type="file"
+                name="coverPhoto"
+                id="coverPhoto"
+                onChange={(e) => coverPhotoTernary(e)}
+                addonClasses="border-none shadow-none m-auto"
+              />
+            )}
+          </div>
           <label>Body</label>
           <Textarea
             value={postBody ? postBody : ''}
