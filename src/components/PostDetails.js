@@ -50,7 +50,7 @@ const PostDetails = (props) => {
       <div className="display: grid auto-rows-min auto-rows-auto row-start-2 col-span-full mx-4">
         <div className="display: grid grid-rows-postTitle">
           <div className="row-start-1 place-self-center col-span-full text-2xl text-center display: grid">
-            <h2 className="row-start-1 place-self-center text-3xl text-green-900">
+            <h2 className="row-start-1 place-self-center text-3xl text-dark-cyan">
               {postDetails ? postDetails.title : ''}
             </h2>
             <div>

@@ -4,8 +4,8 @@ function Input(props) {
       className={`
       border-2
       box-border
-      border-green-200
-      focus:border-green-500
+      border-cyan
+      focus:border-cyan
       shadow-sm
       block
       mb-2
