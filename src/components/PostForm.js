@@ -82,7 +82,7 @@ const PostForm = (props) => {
         const item = data.post;
         setPostTitle(item.title);
         setPostCoverPhoto(item.coverPhoto);
-        setCoverPhotoURL(baseUrl + '/uploads/' + item.coverPhoto);
+        setCoverPhotoURL(item.coverPhoto);
         setPostBody(item.body);
       };
       fetchPostDetails();

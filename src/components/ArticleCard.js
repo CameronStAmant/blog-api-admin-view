@@ -8,9 +8,7 @@ function ArticleCard(props) {
         <div className="overflow-hidden h-postCoverPhoto">
           <img
             className="w-full rounded-tl-md rounded-tr-md"
-            src={
-              props.post ? baseUrl + '/uploads/' + props.post.coverPhoto : ''
-            }
+            src={props.post ? props.post.coverPhoto : ''}
             alt="Post Cover"
           />
         </div>

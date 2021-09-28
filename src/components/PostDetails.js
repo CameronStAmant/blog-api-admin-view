@@ -64,11 +64,7 @@ const PostDetails = (props) => {
           </div>
           <div className="overflow-hidden h-postCoverPhoto rounded-md">
             <img
-              src={
-                postDetails
-                  ? baseUrl + '/uploads/' + postDetails.coverPhoto
-                  : ''
-              }
+              src={postDetails ? postDetails.coverPhoto : ''}
               alt="Post Cover"
             />
           </div>
